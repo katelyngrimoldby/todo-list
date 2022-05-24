@@ -4,7 +4,20 @@ const todoFactory = (title, date, description, priority) => {
     const getDescription = () => description;
     const getPriority = () => priority;
 
-    return { getTitle, getDate, getDescription, getPriority };
+    const setTitle = (input) => {
+        title = input;
+    }
+    const setDate = (input) => {
+        date = input;
+    }
+    const setDescription = (input) => {
+        description = input;
+    }
+    const setPriority = (input) => {
+        priority = input;
+    }
+
+    return { getTitle, getDate, getDescription, getPriority, setTitle, setDate, setDescription, setPriority };
 };
 
 export default todoFactory;
