@@ -179,6 +179,7 @@ const ProjectUi = (() => {
 
         removeBtn.addEventListener('click', () => {
             ProjectManager.removeProject(id);
+            content.removeChild(card);
         });
 
         editBtn.addEventListener('click', () => {
@@ -229,3 +230,22 @@ const ProjectUi = (() => {
 
     return { render }
 })();
+
+const WindowUi = (() => {
+    const initLoad = () => {
+       ProjectManager.addProject();
+       ProjectUi.render();
+       ProjectManager.projects.at(0).createNewItem();
+       TodoUi.render(0);
+    }
+
+    const addBtn = document.getElementById('addP');
+
+    addBtn.addEventListener('click', () => {
+        ProjectManager.addProject();
+        ProjectUi.render();
+    });
+    return { initLoad }
+})();
+
+export {TodoUi, ProjectUi, WindowUi};
