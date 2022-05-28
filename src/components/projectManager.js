@@ -4,7 +4,7 @@ const ProjectManager = (() => {
     const projects = [];
 
     const addProject = () => {
-        newProject = new Project('New Project');
+        let newProject = new Project('New Project');
         projects.push(newProject);
     }
     const removeProject = (id) => {
