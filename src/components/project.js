@@ -9,7 +9,7 @@ const Project = (title) => {
     }
     const createNewItem = () => {
         let newItem
-        newItem = new Todo('New Todo', format(Date.now(), 'MM/dd/yyyy'), 'Add Description', 0);
+        newItem = Todo('New Todo', format(Date.now(), 'MM/dd/yyyy'), 'Add Description', 0);
         addItem(newItem);
     }
     const addItem = (item) => {
