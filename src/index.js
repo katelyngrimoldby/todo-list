@@ -4,5 +4,5 @@ import ProjectManager from './components/projectManager';
 import Todo from './components/todo';
 import {TodoUi, ProjectUi, WindowUi} from './components/ui';
 
-window.onload(WindowUi.initLoad);
+WindowUi.initLoad;
 
