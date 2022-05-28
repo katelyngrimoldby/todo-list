@@ -7,7 +7,7 @@ const content = document.querySelector('#content');
 const TodoUi = (() => {
     //make card
     const createItem = (element, id, projectId) => {
-        const isExpanded = false;
+        let isExpanded = false;
         //create elements
         const card = document.createElement('div');
         const name = document.createElement('h3');
@@ -54,13 +54,15 @@ const TodoUi = (() => {
                 card.removeChild(description);
                 card.removeChild(editBtn);
                 toggleBtn.textContent = 'Expand Todo';
-                isExpanded != isExpanded;
+                isExpanded = false;
+                console.log(isExpanded)
             }else {
                 card.removeChild(removeBtn);
                 card.removeChild(toggleBtn);
                 card.append(description, editBtn, removeBtn, toggleBtn);
                 toggleBtn.textContent = 'Collapse Todo';
-                isExpanded != isExpanded;
+                isExpanded = true;
+                console.log(isExpanded)
             }
         });
 
@@ -120,7 +122,7 @@ const TodoUi = (() => {
                 }
 
                 //add normal contents
-                card.append(name, date, removeBtn, editBtn, toggleBtn);
+                card.append(name, date, description, removeBtn, editBtn, toggleBtn);
             });
         })
     }
@@ -174,7 +176,7 @@ const ProjectUi = (() => {
         //event listeners
         addBtn.addEventListener('click', () => {
             element.createNewItem();
-            TodoUi.render()
+            TodoUi.render(id)
         });
 
         removeBtn.addEventListener('click', () => {
@@ -233,6 +235,7 @@ const ProjectUi = (() => {
 
 const WindowUi = (() => {
     const initLoad = () => {
+        console.log('Initialized!')
        ProjectManager.addProject();
        ProjectUi.render();
        ProjectManager.projects.at(0).createNewItem();
