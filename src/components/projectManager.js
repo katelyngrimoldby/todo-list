@@ -1,8 +1,11 @@
+import Project from "./project";
+
 const ProjectManager = (() => {
     const projects = [];
 
-    const addProject = (project) => {
-        projects.push(project);
+    const addProject = () => {
+        newProject = new Project('New Project');
+        projects.push(newProject);
     }
     const removeProject = (id) => {
         projects.splice(id, 1);
