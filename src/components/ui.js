@@ -133,7 +133,15 @@ const TodoUi = (() => {
         });
     }
 
-    return { render };
+    const clearTodos = (projectId) => {
+        const project = document.getElementById(projectId);
+
+        while (project.childNodes.length > 1) {
+            project.removeChild(project.lastChild);
+        }
+    }
+
+    return { render, clearTodos };
 })();
 
 const ProjectUi = (() => {
@@ -176,6 +184,7 @@ const ProjectUi = (() => {
         //event listeners
         addBtn.addEventListener('click', () => {
             element.createNewItem();
+            TodoUi.clearTodos(id);
             TodoUi.render(id)
         });
 
@@ -230,23 +239,34 @@ const ProjectUi = (() => {
         })
     }
 
-    return { render }
+    const clearProjects = () => {
+        while (content.childNodes.length > 1) {
+            content.removeChild(content.lastChild);
+        }
+    }
+
+    return { render, clearProjects }
 })();
 
 const WindowUi = (() => {
     const initLoad = () => {
         console.log('Initialized!')
-       ProjectManager.addProject();
-       ProjectUi.render();
-       ProjectManager.projects.at(0).createNewItem();
-       TodoUi.render(0);
+        ProjectManager.addProject();
+        ProjectUi.render();
+        ProjectManager.projects.at(0).createNewItem();
+        TodoUi.render(0);
     }
 
     const addBtn = document.getElementById('addP');
 
     addBtn.addEventListener('click', () => {
         ProjectManager.addProject();
+        ProjectUi.clearProjects();
         ProjectUi.render();
+
+        ProjectManager.projects.forEach((e, i) => {
+            TodoUi.render(i);
+        })
     });
     return { initLoad }
 })();
