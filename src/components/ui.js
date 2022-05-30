@@ -250,9 +250,9 @@ const ProjectUi = (() => {
 
 const WindowUi = (() => {
     const initLoad = () => {
-        ProjectManager.addProject();
+        ProjectManager.addProject('New Project');
         ProjectUi.render();
-        ProjectManager.projects.at(0).createNewItem();
+        ProjectManager.projects.at(0).createNewItem('New Todo', format(Date.now(), 'MM, dd, yyyy'), 'Add description', 0);
         TodoUi.render(0);
     }
 
