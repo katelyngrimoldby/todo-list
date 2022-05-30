@@ -3,8 +3,8 @@ import Project from "./project";
 const ProjectManager = (() => {
     const projects = [];
 
-    const addProject = () => {
-        let newProject = Project('New Project');
+    const addProject = (title) => {
+        let newProject = Project(title);
         projects.push(newProject);
     }
     const removeProject = (id) => {
