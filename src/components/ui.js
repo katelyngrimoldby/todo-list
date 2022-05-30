@@ -2,6 +2,7 @@ import format from 'date-fns/format';
 import Project from './project';
 import ProjectManager from './projectManager';
 import Todo from './todo';
+import LocalStorage from './localStorage';
 const content = document.querySelector('#content');
 
 const TodoUi = (() => {
@@ -47,6 +48,9 @@ const TodoUi = (() => {
         removeBtn.addEventListener('click', () => {
             ProjectManager.projects.at(projectId).removeItem(id);
             card.parentNode.removeChild(card);
+
+            LocalStorage.resetStorage();
+            LocalStorage.saveData();
         });
 
         toggleBtn.addEventListener('click', () => {
@@ -115,7 +119,7 @@ const TodoUi = (() => {
                 date.textContent = element.getDate();
                 description.textContent = element.getDescription();
 
-
+                LocalStorage.saveData();
                 //clear card
                 while (card.firstChild) {
                     card.removeChild(card.firstChild);
@@ -186,11 +190,17 @@ const ProjectUi = (() => {
             element.createNewItem('New Todo', format(Date.now(), 'MM, dd, yyyy'), 'Add description', 0);
             TodoUi.clearTodos(id);
             TodoUi.render(id)
+
+            LocalStorage.resetStorage();
+            LocalStorage.saveData();
         });
 
         removeBtn.addEventListener('click', () => {
             ProjectManager.removeProject(id);
             content.removeChild(card);
+
+            LocalStorage.resetStorage();
+            LocalStorage.saveData();
         });
 
         editBtn.addEventListener('click', () => {
@@ -222,6 +232,7 @@ const ProjectUi = (() => {
             saveBtn.addEventListener('click', () => {
                 name.textContent = element.getTitle();
 
+                LocalStorage.saveData();
                 //clear card
                 while (wrapper.firstChild) {
                     wrapper.removeChild(wrapper.firstChild);
@@ -266,6 +277,9 @@ const WindowUi = (() => {
         ProjectManager.projects.forEach((e, i) => {
             TodoUi.render(i);
         })
+
+        LocalStorage.resetStorage();
+        LocalStorage.saveData();
     });
     return { initLoad }
 })();
