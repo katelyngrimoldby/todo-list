@@ -52,10 +52,10 @@ const LocalStorage = (() => {
         }
 
         ProjectManager.projects.forEach((e, i) => {
-            projectStorage.append(new savedProject(i, e.getTitle()));
+            projectStorage.push(new savedProject(i, e.getTitle()));
 
             ProjectManager.projects.at(i).items.forEach((tE, tI) => {
-                projectStorage[i].todos.append(new savedTodo(tI, tE.getTtitle(), tE.getDate(), tE.getDescription(), tE.getPriority()));
+                projectStorage[i].todos.push(new savedTodo(tI, tE.getTitle(), tE.getDate(), tE.getDescription(), tE.getPriority()));
             });
         });
         localStorage.setItem('data', JSON.stringify(projectStorage));
