@@ -84,3 +84,5 @@ const LocalStorage = (() => {
 
     return { isStorageAvailable, isExistingStorage, saveData, getData, parseData, resetStorage}
 })();
+
+export default LocalStorage;
