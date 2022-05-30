@@ -1,3 +1,5 @@
+import Todo from "./todo";
+
 const Project = (title) => {
     const items = []
     const getTitle = () => title;
