@@ -183,7 +183,7 @@ const ProjectUi = (() => {
 
         //event listeners
         addBtn.addEventListener('click', () => {
-            element.createNewItem();
+            element.createNewItem('New Todo', format(Date.now(), 'MM, dd, yyyy'), 'Add description', 0);
             TodoUi.clearTodos(id);
             TodoUi.render(id)
         });
@@ -250,7 +250,6 @@ const ProjectUi = (() => {
 
 const WindowUi = (() => {
     const initLoad = () => {
-        console.log('Initialized!')
         ProjectManager.addProject();
         ProjectUi.render();
         ProjectManager.projects.at(0).createNewItem();
@@ -260,7 +259,7 @@ const WindowUi = (() => {
     const addBtn = document.getElementById('addP');
 
     addBtn.addEventListener('click', () => {
-        ProjectManager.addProject();
+        ProjectManager.addProject('New Project');
         ProjectUi.clearProjects();
         ProjectUi.render();
 
