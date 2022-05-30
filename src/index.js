@@ -5,5 +5,9 @@ import Todo from './components/todo';
 import {TodoUi, ProjectUi, WindowUi} from './components/ui';
 import LocalStorage from './components/localStorage';
 
-WindowUi.initLoad();
+if(LocalStorage.isExistingStorage() && LocalStorage.isStorageAvailable()) {
+    WindowUi.loadFromStorage();
+} else {
+    WindowUi.initLoad();
+}
 
