@@ -267,6 +267,16 @@ const WindowUi = (() => {
         TodoUi.render(0);
     }
 
+    const loadFromStorage = () => {
+        LocalStorage.parseData()
+
+        ProjectUi.render();
+
+        ProjectManager.projects.forEach((e, i) => {
+            TodoUi.render(i);
+        })
+    }
+
     const addBtn = document.getElementById('addP');
 
     addBtn.addEventListener('click', () => {
@@ -281,7 +291,7 @@ const WindowUi = (() => {
         LocalStorage.resetStorage();
         LocalStorage.saveData();
     });
-    return { initLoad }
+    return { initLoad, loadFromStorage }
 })();
 
 export {TodoUi, ProjectUi, WindowUi};
